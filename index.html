@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe Mobile - Casas Soñarte</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Estilos para simular un dispositivo móvil y elementos de wireframe */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+        .mobile-container {
+            width: 390px;
+            max-width: 100%;
+            background-color: #ffffff;
+            border: 10px solid #1f2937;
+            border-radius: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .mobile-screen {
+            height: 844px; /* Altura de un iPhone 14 Pro aprox. */
+            overflow-y: auto;
+            position: relative;
+        }
+        /* Scrollbar para la vista mobile */
+        .mobile-screen::-webkit-scrollbar {
+            width: 4px;
+        }
+        .mobile-screen::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 2px;
+        }
+        .placeholder-box {
+            background-color: #e5e7eb;
+            border: 2px dashed #9ca3af;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 0.875rem;
+            text-align: center;
+        }
+        .icon-placeholder {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 0 auto 0.5rem;
+        }
+        .btn-primary {
+            background-color: #9ca3af;
+            color: #11182b;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            transition: background-color 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #6b7280;
+        }
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid #9ca3af;
+            color: #4b5563;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .btn-secondary:hover {
+            background-color: #f3f4f6;
+        }
+        .btn-red {
+            background-color: #dc2626;
+            color: white;
+        }
+         .btn-red:hover {
+            background-color: #b91c1c;
+        }
+        .section-padding {
+            padding: 2rem 1.25rem;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle {
+            font-size: 0.95rem;
+            color: #4b5563;
+            text-align: center;
+            max-width: 90%;
+            margin: 0 auto 1.5rem;
+        }
+        /* Estilo para carruseles */
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 1rem;
+            padding-bottom: 1rem;
+        }
+        .carousel-card {
+            flex: 0 0 70%;
+            scroll-snap-align: start;
+        }
+        .sticky-cta {
+            position: absolute;
+        }
+        /* Ocultar scrollbar pero permitir scroll */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        /* Estilos para el nuevo carrusel de proceso */
+        .process-tab {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #d1d5db;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .process-tab.active {
+            background-color: #4b5563;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <div class="mobile-screen">
+            <!-- 1. Header -->
+            <header class="bg-white p-4 flex justify-between items-center sticky top-0 z-10 shadow-sm">
+                <div class="text-2xl text-gray-700">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="h-8 w-32 placeholder-box text-sm">Logotipo</div>
+                 <!-- CTA Sticky -->
+                <a href="#" class="btn-primary btn-red text-sm font-bold py-2 px-4 rounded-lg shadow-md">Cotizar ahora</a>
+            </header>
+
+            <main>
+                <!-- 2. Hero / Banner Principal -->
+                <section class="relative h-96">
+                    <div class="absolute inset-0 placeholder-box">Imagen WebP</div>
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-6 text-white">
+                        <h1 class="text-2xl font-bold leading-tight">Casas prefabricadas para todo Chile, con diseño y confianza</h1>
+                        <p class="mt-2 text-lg">Modelos desde $9.5 millones</p>
+                        <div class="flex gap-4 mt-6">
+                            <a href="#catalogo" class="btn-secondary !border-white !text-white flex-1 text-sm py-3">Ver modelos</a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. Proceso de compra -->
+                <section class="section-padding bg-gray-50 overflow-hidden">
+                    <h2 class="section-title">Proceso de compra de tu casa prefabricada</h2>
+                    <p class="section-subtitle !text-sm">Conoce los pasos esenciales y los consejos expertos para garantizar una experiencia de compra exitosa de casas prefabricadas. ¡Hazlo fácil y seguro!</p>
+                    <div id="process-carousel-container" class="relative">
+                         <div id="process-carousel" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar">
+                            <!-- Slide 1 -->
+                            <div class="w-full flex-shrink-0 snap-center text-center p-4">
+                                <div class="icon-placeholder placeholder-box"><i class="fas fa-calendar-check text-gray-500"></i></div>
+                                <h3 class="font-semibold text-gray-800 text-sm">Agenda una visita</h3>
+                                <p class="text-xs text-gray-500 mt-1">Escribiéndonos a nuestro WhatsApp o RRSS</p>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="w-full flex-shrink-0 snap-center text-center p-4">
+                                <div class="icon-placeholder placeholder-box"><i class="fas fa-file-signature text-gray-500"></i></div>
+                                <h3 class="font-semibold text-gray-800 text-sm">Generamos un contrato</h3>
+                                <p class="text-xs text-gray-500 mt-1">Acordamos la fecha de entrega</p>
+                            </div>
+                             <!-- Slide 3 -->
+                            <div class="w-full flex-shrink-0 snap-center text-center p-4">
+                                <div class="icon-placeholder placeholder-box"><i class="fas fa-money-bill-wave text-gray-500"></i></div>
+                                <h3 class="font-semibold text-gray-800 text-sm">Abona solo $100.000</h3>
+                                <p class="text-xs text-gray-500 mt-1">Efectivo, transferencia, débito o crédito</p>
+                            </div>
+                             <!-- Slide 4 -->
+                            <div class="w-full flex-shrink-0 snap-center text-center p-4">
+                                <div class="icon-placeholder placeholder-box"><i class="fas fa-truck text-gray-500"></i></div>
+                                <h3 class="font-semibold text-gray-800 text-sm">Paga el saldo en la entrega</h3>
+                                <p class="text-xs text-gray-500 mt-1">Revisa la carga antes de salir de nuestra fábrica</p>
+                            </div>
+                        </div>
+                        <div id="process-tabs" class="flex justify-center gap-3 mt-4">
+                            <!-- Tabs se generarán con JS -->
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 4. Sección cita centrada -->
+                <section class="section-padding bg-gray-800 text-white">
+                     <div class="text-center">
+                        <p class="text-lg italic leading-relaxed">"Es muy importante que los clientes conozcan la fábrica y los materiales, por eso nos interesa compartir el proceso de fabricación en nuestras plantas."</p>
+                        <p class="mt-4 text-sm font-semibold opacity-80">Director de proyectos</p>
+                    </div>
+                </section>
+
+                <!-- 5. Catálogo de Modelos -->
+                <section id="catalogo" class="section-padding">
+                    <h2 class="section-title">Catálogo de Casas Prefabricadas</h2>
+                    <p class="section-subtitle">Explora nuestra colección de casas prefabricadas para encontrar el diseño que se adapte a tus necesidades y estilo de vida</p>
+                    <div class="flex overflow-x-auto pb-4 gap-2 text-sm hide-scrollbar">
+                        <button class="bg-gray-800 text-white py-2 px-4 rounded-full whitespace-nowrap">Todos</button>
+                        <button class="bg-gray-200 text-gray-700 py-2 px-4 rounded-full whitespace-nowrap">Clásico</button>
+                        <button class="bg-gray-200 text-gray-700 py-2 px-4 rounded-full whitespace-nowrap">Modelo T</button>
+                        <button class="bg-gray-200 text-gray-700 py-2 px-4 rounded-full whitespace-nowrap">Cordillera</button>
+                        <button class="bg-gray-200 text-gray-700 py-2 px-4 rounded-full whitespace-nowrap">Mediterráneo</button>
+                    </div>
+                    
+                    <!-- Carrusel Modelo Clásico -->
+                    <div class="mt-6 carousel-container">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-bold text-lg">Modelo Clásico</h3>
+                            <div class="flex gap-2 text-gray-500">
+                                <i class="fas fa-arrow-left cursor-pointer carousel-prev"></i>
+                                <i class="fas fa-arrow-right cursor-pointer carousel-next"></i>
+                            </div>
+                        </div>
+                        <div class="carousel hide-scrollbar">
+                            <!-- Cards Modelo Clásico -->
+                            <script>
+                                const modelosClasico = ["24mt 2A", "36mt 2A", "36mt 2A L", "42mt 2A", "48mt 2A", "54mt 2A", "72mt 2A", "54mt 6A", "108mt 6A", "128mt 6A", "171mt", "72mt L", "83mt L", "117mt L", "141mt", "72mt 6A", "84mt 6A", "120mt 6A", "144mt"];
+                                modelosClasico.forEach(m => {
+                                    document.write(`
+                                    <div class="carousel-card border rounded-lg overflow-hidden shadow-sm bg-white">
+                                        <div class="h-40 placeholder-box">Imagen</div>
+                                        <div class="p-4">
+                                            <h4 class="font-bold">${m} Modelo Clásico</h4>
+                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones</p>
+                                            <div class="mt-4 flex flex-col gap-2">
+                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha RM</a>
+                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha IV Reg</a>
+                                            </div>
+                                        </div>
+                                    </div>`);
+                                });
+                            </script>
+                        </div>
+                    </div>
+
+                    <!-- Carrusel Modelo T -->
+                    <div class="mt-6 carousel-container">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-bold text-lg">Modelo T</h3>
+                             <div class="flex gap-2 text-gray-500">
+                                <i class="fas fa-arrow-left cursor-pointer carousel-prev"></i>
+                                <i class="fas fa-arrow-right cursor-pointer carousel-next"></i>
+                            </div>
+                        </div>
+                        <div class="carousel hide-scrollbar">
+                             <script>
+                                const modelosT = ["63mt Modelo Clásico T", "83mt Modelo Clásico T", "120mt Modelo T"];
+                                modelosT.forEach(m => {
+                                    document.write(`
+                                    <div class="carousel-card border rounded-lg overflow-hidden shadow-sm bg-white">
+                                        <div class="h-40 placeholder-box">Imagen</div>
+                                        <div class="p-4">
+                                            <h4 class="font-bold">${m}</h4>
+                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones</p>
+                                            <div class="mt-4 flex flex-col gap-2">
+                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha RM</a>
+                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha IV Reg</a>
+                                            </div>
+                                        </div>
+                                    </div>`);
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    
+                    <!-- Carrusel Modelo Cordillera -->
+                    <div class="mt-6 carousel-container">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-bold text-lg">Modelo Cordillera</h3>
+                             <div class="flex gap-2 text-gray-500">
+                                <i class="fas fa-arrow-left cursor-pointer carousel-prev"></i>
+                                <i class="fas fa-arrow-right cursor-pointer carousel-next"></i>
+                            </div>
+                        </div>
+                        <div class="carousel hide-scrollbar">
+                             <script>
+                                const modelosCordillera = ["40mt", "90mt", "60mt", "116mt", "72mt", "170mt"];
+                                modelosCordillera.forEach(m => {
+                                    document.write(`
+                                    <div class="carousel-card border rounded-lg overflow-hidden shadow-sm bg-white">
+                                        <div class="h-40 placeholder-box">Imagen</div>
+                                        <div class="p-4">
+                                            <h4 class="font-bold">${m} Modelo Cordillera</h4>
+                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones</p>
+                                            <div class="mt-4 flex flex-col gap-2">
+                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha RM</a>
+                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha IV Reg</a>
+                                            </div>
+                                        </div>
+                                    </div>`);
+                                });
+                            </script>
+                        </div>
+                    </div>
+
+                    <!-- Carrusel Modelo Mediterráneo -->
+                    <div class="mt-6 carousel-container">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-bold text-lg">Modelo Mediterráneo</h3>
+                             <div class="flex gap-2 text-gray-500">
+                                <i class="fas fa-arrow-left cursor-pointer carousel-prev"></i>
+                                <i class="fas fa-arrow-right cursor-pointer carousel-next"></i>
+                            </div>
+                        </div>
+                        <div class="carousel hide-scrollbar">
+                             <script>
+                                const modelosMediterraneo = ["36mt", "83mt", "141mt", "63mt", "117mt", "72mt", "128mt"];
+                                modelosMediterraneo.forEach(m => {
+                                    document.write(`
+                                    <div class="carousel-card border rounded-lg overflow-hidden shadow-sm bg-white">
+                                        <div class="h-40 placeholder-box">Imagen</div>
+                                        <div class="p-4">
+                                            <h4 class="font-bold">${m} Modelo Mediterráneo</h4>
+                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones</p>
+                                            <div class="mt-4 flex flex-col gap-2">
+                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha RM</a>
+                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha IV Reg</a>
+                                            </div>
+                                        </div>
+                                    </div>`);
+                                });
+                            </script>
+                        </div>
+                    </div>
+
+                </section>
+                
+                <!-- 6. Sección de Adicionales -->
+                <section class="section-padding bg-gray-50 carousel-container">
+                    <div class="flex justify-between items-center">
+                        <h2 class="section-title !text-left !m-0">Adicionales para tu casa</h2>
+                         <div class="flex gap-2 text-gray-500">
+                            <i class="fas fa-arrow-left cursor-pointer carousel-prev"></i>
+                            <i class="fas fa-arrow-right cursor-pointer carousel-next"></i>
+                        </div>
+                    </div>
+                    <div class="carousel hide-scrollbar mt-4">
+                        <div class="carousel-card border rounded-lg bg-white p-4 text-center !flex-shrink-0" style="flex-basis: 70%;">
+                            <div class="icon-placeholder placeholder-box"><i class="fas fa-ruler-combined text-gray-500"></i></div>
+                            <h4 class="font-bold mt-2">TEJAS ASFÁLTICAS</h4>
+                            <ul class="text-xs text-gray-500 mt-2 list-disc list-inside text-left">
+                                <li>Incluye OSB.</li>
+                                <li>Incluye un 30% extra de cerchas.</li>
+                            </ul>
+                        </div>
+                        <div class="carousel-card border rounded-lg bg-white p-4 text-center !flex-shrink-0" style="flex-basis: 70%;">
+                           <div class="icon-placeholder placeholder-box"><i class="fas fa-columns text-gray-500"></i></div>
+                            <h4 class="font-bold mt-2">VIGAS A LA VISTA</h4>
+                            <ul class="text-xs text-gray-500 mt-2 list-disc list-inside text-left">
+                                <li>En living comedor.</li>
+                                <li>Incluye tablas de cielo.</li>
+                            </ul>
+                        </div>
+                        <div class="carousel-card border rounded-lg bg-white p-4 text-center !flex-shrink-0" style="flex-basis: 70%;">
+                           <div class="icon-placeholder placeholder-box"><i class="fas fa-fill-drip text-gray-500"></i></div>
+                            <h4 class="font-bold mt-2">REVESTIMIENTO SIDING</h4>
+                            <ul class="text-xs text-gray-500 mt-2 list-disc list-inside text-left">
+                               <li>Material fibrocemento.</li>
+                               <li>Color a elección.</li>
+                               <li>Incluye OSB.</li>
+                            </ul>
+                        </div>
+                         <div class="carousel-card border rounded-lg bg-white p-4 text-center !flex-shrink-0" style="flex-basis: 70%;">
+                           <div class="icon-placeholder placeholder-box"><i class="fas fa-border-all text-gray-500"></i></div>
+                            <h4 class="font-bold mt-2">VENTANAS DE ALUMINIO</h4>
+                             <ul class="text-xs text-gray-500 mt-2 list-disc list-inside text-left">
+                               <li>Vidrios incluidos.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 7. Testimonios de Clientes -->
+                <section class="section-padding carousel-container">
+                    <div class="flex justify-between items-center">
+                        <h2 class="section-title !text-left !m-0">Lo que dicen nuestros clientes</h2>
+                        <div class="flex gap-2 text-gray-500">
+                            <i class="fas fa-arrow-left cursor-pointer carousel-prev"></i>
+                            <i class="fas fa-arrow-right cursor-pointer carousel-next"></i>
+                        </div>
+                    </div>
+                    <div class="carousel hide-scrollbar mt-4">
+                        <div class="carousel-card border rounded-lg bg-white p-4 !flex-shrink-0" style="flex-basis: 80%;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-full placeholder-box">Foto</div>
+                                <div>
+                                    <p class="font-bold">Nombre Cliente</p>
+                                    <p class="text-sm text-gray-500">Comuna</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 italic mt-3">"Cita breve del testimonio del cliente sobre su experiencia positiva con la empresa."</p>
+                        </div>
+                         <div class="carousel-card border rounded-lg bg-white p-4 !flex-shrink-0" style="flex-basis: 80%;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-full placeholder-box">Foto</div>
+                                <div>
+                                    <p class="font-bold">Otro Cliente</p>
+                                    <p class="text-sm text-gray-500">Comuna</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 italic mt-3">"Otra cita breve del testimonio del cliente sobre su experiencia positiva."</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 8. Preguntas Frecuentes (FAQ resumida) -->
+                <section class="section-padding bg-gray-50">
+                    <h2 class="section-title">Preguntas Frecuentes</h2>
+                     <div class="space-y-3 mt-4">
+                        <div class="border-b pb-3">
+                            <details class="group">
+                                <summary class="flex justify-between items-center font-semibold cursor-pointer list-none">
+                                    ¿Cómo se entregan las casas?
+                                    <i class="fas fa-chevron-down transition-transform duration-300 group-open:rotate-180"></i>
+                                </summary>
+                                <p class="text-gray-600 mt-2 text-sm">Aquí iría la respuesta a la pregunta frecuente, explicando los detalles de la entrega.</p>
+                            </details>
+                        </div>
+                        <div class="border-b pb-3">
+                           <details class="group">
+                                <summary class="flex justify-between items-center font-semibold cursor-pointer list-none">
+                                    ¿Cuál es el tiempo de entrega?
+                                    <i class="fas fa-chevron-down transition-transform duration-300 group-open:rotate-180"></i>
+                                </summary>
+                                <p class="text-gray-600 mt-2 text-sm">Aquí iría la respuesta sobre el tiempo estimado de entrega de las casas prefabricadas.</p>
+                            </details>
+                        </div>
+                         <div class="border-b pb-3">
+                            <details class="group">
+                                <summary class="flex justify-between items-center font-semibold cursor-pointer list-none">
+                                    ¿Qué incluye el precio?
+                                    <i class="fas fa-chevron-down transition-transform duration-300 group-open:rotate-180"></i>
+                                </summary>
+                                <p class="text-gray-600 mt-2 text-sm">Detalle de lo que incluye el kit básico y los costos adicionales que podrían existir.</p>
+                            </details>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-secondary block mt-6 text-center">Ver más preguntas</a>
+                </section>
+
+                <!-- 9. Sección Seguridad y Confianza, Video, Nosotros, Formulario y Footer (sin cambios) -->
+                <!-- 9. Sección Seguridad y Confianza -->
+                <section class="section-padding">
+                    <h2 class="section-title">Seguridad y Confianza</h2>
+                    <ul class="mt-4 space-y-3">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-gray-600"></i><span class="text-gray-700">Atención personalizada y/o en linea.</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-gray-600"></i><span class="text-gray-700">Todas nuestras sucursales poseen fabrica.</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-gray-600"></i><span class="text-gray-700">Te mostramos nuestro proceso de fabricacion.</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-gray-600"></i><span class="text-gray-700">Verás los materiales antes de comprar.</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-gray-600"></i><span class="text-gray-700">Te llamamos antes de la fabricación.</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-gray-600"></i><span class="text-gray-700">Somos flexibles en la entrega.</span></li>
+                    </ul>
+                </section>
+
+                <!-- 10. Video Vive la experiencia -->
+                <section class="section-padding bg-gray-50">
+                    <h2 class="section-title">Vive la experiencia</h2>
+                    <div class="aspect-video mt-4 rounded-lg placeholder-box flex items-center justify-center">
+                        <i class="fas fa-play-circle text-4xl text-gray-500"></i>
+                    </div>
+                </section>
+
+                <!-- 11. Sección Nosotros -->
+                <section class="section-padding">
+                     <h2 class="section-title">Casa Soñarte</h2>
+                     <div class="mt-4">
+                        <div class="w-full h-48 placeholder-box mb-4 rounded-lg">Imagen</div>
+                        <div>
+                            <h3 class="font-bold text-lg">Fabricamos la Casa de tus sueños</h3>
+                            <p class="text-sm text-gray-600 mt-2">Somos Casas Soñarte una empresa comprometida con fabricar productos de calidad a bajos precios, entregando a nuestros clientes la oportunidad de vivir en un hogar confortable y de calidad. Ofrecemos más de 30 modelos de casas para las diferentes necesidades que cada familia requiera.</p>
+                             <div class="space-y-3 mt-4">
+                                <div class="border-b pb-3">
+                                    <details class="group">
+                                        <summary class="flex justify-between items-center font-semibold cursor-pointer list-none">
+                                            Misión
+                                            <i class="fas fa-plus transition-transform duration-300 group-open:rotate-45"></i>
+                                        </summary>
+                                        <p class="text-gray-600 mt-2 text-sm">El texto de la misión de la empresa iría aquí.</p>
+                                    </details>
+                                </div>
+                                <div class="border-b pb-3">
+                                     <details class="group">
+                                        <summary class="flex justify-between items-center font-semibold cursor-pointer list-none">
+                                            Visión
+                                            <i class="fas fa-plus transition-transform duration-300 group-open:rotate-45"></i>
+                                        </summary>
+                                        <p class="text-gray-600 mt-2 text-sm">El texto de la visión de la empresa iría aquí.</p>
+                                    </details>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                </section>
+                
+                <!-- 12. Formulario de Cotización y Ubicación -->
+                <section class="section-padding bg-gray-50">
+                    <h2 class="section-title">Contacto</h2>
+                    <p class="section-subtitle">Completa el siguiente formulario y nos contactaremos contigo a la brevedad.</p>
+                    <form class="mt-6 space-y-5">
+                        <div>
+                            <label class="text-sm font-medium text-gray-700">Nombre</label>
+                            <input type="text" class="w-full mt-1 p-3 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400" placeholder="Tu nombre">
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium text-gray-700">E-Mail</label>
+                            <input type="email" class="w-full mt-1 p-3 rounded-md bg-white border border-gray-300" placeholder="tu.correo@ejemplo.com">
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium text-gray-700">Modelo a cotizar</label>
+                            <div class="mt-2 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                                <label class="flex items-center"><input type="radio" name="modelo" class="mr-2"> Clásico</label>
+                                <label class="flex items-center"><input type="radio" name="modelo" class="mr-2"> Modelo T</label>
+                                <label class="flex items-center"><input type="radio" name="modelo" class="mr-2"> Cordillera</label>
+                                <label class="flex items-center"><input type="radio" name="modelo" class="mr-2"> Mediterráneo</label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium text-gray-700">Seleccionar Región</label>
+                             <div class="mt-2 flex gap-6 text-sm">
+                                <label class="flex items-center"><input type="radio" name="region" class="mr-2"> Paine</label>
+                                <label class="flex items-center"><input type="radio" name="region" class="mr-2"> Coquimbo</label>
+                            </div>
+                        </div>
+                         <div>
+                            <label class="text-sm font-medium text-gray-700">Mensaje</label>
+                            <textarea rows="4" class="w-full mt-1 p-3 rounded-md bg-white border border-gray-300" placeholder="Escribe tu mensaje aquí..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary btn-red w-full !py-3 !text-base !rounded-full">Enviar</button>
+                    </form>
+                </section>
+
+                <!-- Ubicación -->
+                <section class="section-padding">
+                    <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden border-2 border-dashed border-gray-300">
+                         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13204.66179401764!2d-70.749199!3d-33.851957!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662e0887012351d%3A0x7d636384560b38cd!2sCasas%20prefabricadas%20So%C3%B1arte!5e0!3m2!1ses-419!2sar!4v1678886400000" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="mt-6 space-y-4 text-gray-700">
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt mt-1 text-gray-500"></i>
+                            <p>Longitudinal sur km 47, Paine, RM</p>
+                        </div>
+                         <div class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt mt-1 text-gray-500"></i>
+                            <p>Sector el Panul, Camino al vertedero S/N, Coquimbo</p>
+                        </div>
+                         <div class="flex items-start gap-3">
+                            <i class="fas fa-clock mt-1 text-gray-500"></i>
+                            <div>
+                                <p>Lunes a Viernes de 9:00 a 18:00 Hrs.</p>
+                                <p>Sábados de 9:00 a 16:00 Hrs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 13. Footer -->
+                <footer class="section-padding bg-gray-900 text-gray-300 text-sm">
+                    <div class="text-center md:text-left">
+                        <h4 class="font-bold text-white">Fábrica de casas prefabricadas.</h4>
+                        <p class="mt-1 text-gray-400">Seguridad, confianza y transparente para tu servicio.</p>
+                    </div>
+                    <div class="mt-6 border-t border-gray-700 pt-6">
+                         <h5 class="font-semibold text-white">Teléfono:</h5>
+                         <ul class="mt-2 space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-white">+569 3289 0426 (Whatsapp + Atención Personalizada)</a></li>
+                            <li><a href="#" class="hover:text-white">+569 3669 8846 (Atención Personalizada)</a></li>
+                            <li><a href="#" class="hover:text-white">+569 6447 9539 (Atención Personalizada)</a></li>
+                         </ul>
+                    </div>
+                     <div class="mt-6 border-t border-gray-700 pt-6">
+                         <h5 class="font-semibold text-white">E-mail:</h5>
+                         <a href="mailto:info@casassonarte.cl" class="text-gray-400 hover:text-white">info@casassonarte.cl</a>
+                    </div>
+                    <div class="mt-6 border-t border-gray-700 pt-6">
+                        <h5 class="font-semibold text-white mb-3">RRSS</h5>
+                        <div class="flex gap-6 text-2xl">
+                            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="mt-6 border-t border-gray-700 pt-6 flex flex-col space-y-2 text-gray-400">
+                        <a href="#" class="hover:text-white">Preguntas Frecuentes</a>
+                        <a href="#" class="hover:text-white">Términos y Condiciones</a>
+                        <a href="#" class="hover:text-white">Políticas de privacidad</a>
+                    </div>
+                    <div class="mt-8 border-t border-gray-700 pt-6 text-center text-xs text-gray-500">
+                        <p>Sitio web construído por Ingeniería Digital 2024 / Todos los derechos reservados.</p>
+                    </div>
+                </footer>
+
+            </main>
+
+            <!-- Botón Subir -->
+            <button onclick="document.querySelector('.mobile-screen').scrollTo({top: 0})" class="fixed bottom-5 right-5 h-12 w-12 bg-gray-800 text-white rounded-full flex items-center justify-center shadow-lg">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Lógica para el carrusel de Proceso de Compra ---
+            const processCarousel = document.getElementById('process-carousel');
+            if (processCarousel) {
+                const slides = processCarousel.children;
+                const tabsContainer = document.getElementById('process-tabs');
+                const slideCount = slides.length;
+
+                // Crear tabs
+                for (let i = 0; i < slideCount; i++) {
+                    const tab = document.createElement('div');
+                    tab.classList.add('process-tab');
+                    tab.addEventListener('click', () => {
+                        processCarousel.scrollTo({
+                            left: i * processCarousel.offsetWidth,
+                            behavior: 'smooth'
+                        });
+                    });
+                    tabsContainer.appendChild(tab);
+                }
+
+                const tabs = tabsContainer.children;
+                tabs[0].classList.add('active');
+
+                // Actualizar tab activo con el scroll
+                processCarousel.addEventListener('scroll', () => {
+                    const currentIndex = Math.round(processCarousel.scrollLeft / processCarousel.offsetWidth);
+                    Array.from(tabs).forEach((tab, index) => {
+                        tab.classList.toggle('active', index === currentIndex);
+                    });
+                });
+            }
+
+            // --- Lógica genérica para los carruseles con flechas ---
+            const carouselContainers = document.querySelectorAll('.carousel-container');
+            carouselContainers.forEach(container => {
+                const carousel = container.querySelector('.carousel');
+                const prevBtn = container.querySelector('.carousel-prev');
+                const nextBtn = container.querySelector('.carousel-next');
+
+                if (!carousel || !prevBtn || !nextBtn) return;
+
+                const scrollAmount = carousel.querySelector('.carousel-card')?.offsetWidth * 0.8;
+
+                nextBtn.addEventListener('click', () => {
+                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
