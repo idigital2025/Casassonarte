@@ -224,6 +224,7 @@
                         <button class="bg-gray-200 text-gray-700 py-2 px-4 rounded-full whitespace-nowrap">Modelo T</button>
                         <button class="bg-gray-200 text-gray-700 py-2 px-4 rounded-full whitespace-nowrap">Cordillera</button>
                         <button class="bg-gray-200 text-gray-700 py-2 px-4 rounded-full whitespace-nowrap">Mediterráneo</button>
+                        <button class="bg-gray-200 text-gray-700 py-2 px-4 rounded-full whitespace-nowrap">Modelo L</button>
                     </div>
                     
                     <!-- Carrusel Modelo Clásico -->
@@ -245,7 +246,8 @@
                                         <div class="h-40 placeholder-box">Imagen</div>
                                         <div class="p-4">
                                             <h4 class="font-bold">${m} Modelo Clásico</h4>
-                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones</p>
+                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en RM</em></p>
+                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en IV Reg</em></p>
                                             <div class="mt-4 flex flex-col gap-2">
                                                 <a href="#" class="btn-secondary !text-sm w-full">Ver ficha RM</a>
                                                 <a href="#" class="btn-secondary !text-sm w-full">Ver ficha IV Reg</a>
@@ -268,14 +270,15 @@
                         </div>
                         <div class="carousel hide-scrollbar">
                              <script>
-                                const modelosT = ["63mt Modelo Clásico T", "83mt Modelo Clásico T", "120mt Modelo T"];
+                                const modelosT = ["63mt Modelo T", "83mt Modelo T", "120mt Modelo T"];
                                 modelosT.forEach(m => {
                                     document.write(`
                                     <div class="carousel-card border rounded-lg overflow-hidden shadow-sm bg-white">
                                         <div class="h-40 placeholder-box">Imagen</div>
                                         <div class="p-4">
                                             <h4 class="font-bold">${m}</h4>
-                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones</p>
+                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en RM</em></p>
+                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en IV Reg</em></p>
                                             <div class="mt-4 flex flex-col gap-2">
                                                 <a href="#" class="btn-secondary !text-sm w-full">Ver ficha RM</a>
                                                 <a href="#" class="btn-secondary !text-sm w-full">Ver ficha IV Reg</a>
@@ -305,7 +308,8 @@
                                         <div class="h-40 placeholder-box">Imagen</div>
                                         <div class="p-4">
                                             <h4 class="font-bold">${m} Modelo Cordillera</h4>
-                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones</p>
+                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en RM</em></p>
+                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en IV Reg</em></p>
                                             <div class="mt-4 flex flex-col gap-2">
                                                 <a href="#" class="btn-secondary !text-sm w-full">Ver ficha RM</a>
                                                 <a href="#" class="btn-secondary !text-sm w-full">Ver ficha IV Reg</a>
@@ -335,7 +339,39 @@
                                         <div class="h-40 placeholder-box">Imagen</div>
                                         <div class="p-4">
                                             <h4 class="font-bold">${m} Modelo Mediterráneo</h4>
-                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones</p>
+                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en RM</em></p>
+                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en IV Reg</em></p>
+                                            <div class="mt-4 flex flex-col gap-2">
+                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha RM</a>
+                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha IV Reg</a>
+                                            </div>
+                                        </div>
+                                    </div>`);
+                                });
+                            </script>
+                        </div>
+                    </div>
+
+                    <!-- Carrusel Modelo L -->
+                    <div class="mt-6 carousel-container">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-bold text-lg">Modelo L</h3>
+                             <div class="flex gap-2 text-gray-500">
+                                <i class="fas fa-arrow-left cursor-pointer carousel-prev"></i>
+                                <i class="fas fa-arrow-right cursor-pointer carousel-next"></i>
+                            </div>
+                        </div>
+                        <div class="carousel hide-scrollbar">
+                             <script>
+                                const modelosL = ["36mt 2A Modelo Clásico L", "117mt Modelo Clásico L"];
+                                modelosL.forEach(m => {
+                                    document.write(`
+                                    <div class="carousel-card border rounded-lg overflow-hidden shadow-sm bg-white">
+                                        <div class="h-40 placeholder-box">Imagen</div>
+                                        <div class="p-4">
+                                            <h4 class="font-bold">${m}</h4>
+                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en RM</em></p>
+                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en IV Reg</em></p>
                                             <div class="mt-4 flex flex-col gap-2">
                                                 <a href="#" class="btn-secondary !text-sm w-full">Ver ficha RM</a>
                                                 <a href="#" class="btn-secondary !text-sm w-full">Ver ficha IV Reg</a>
@@ -349,7 +385,83 @@
 
                 </section>
                 
-                <!-- 6. Sección de Adicionales -->
+                <!-- Nueva Sección KITS -->
+                <section class="section-padding bg-red-600 carousel-container"> <!-- Fondo de sección rojo -->
+                    <h2 class="section-title !text-white">¿Qué incluye cada casa?</h2> <!-- Título blanco -->
+                    <p class="!text-white !text-sm text-center mb-6">Cada modelo de casa se entrega según el kit que elijas<br>Los kits definen materiales, terminaciones y nivel de instalación. Revisa las diferencias y elige el que mejor se adapte a tus necesidades</p>
+                    
+                    <div class="flex justify-center items-center mb-4">
+                         <div class="flex gap-3 text-gray-200"> <!-- Flechas claras -->
+                            <i class="fas fa-arrow-left cursor-pointer carousel-prev p-2"></i>
+                            <i class="fas fa-arrow-right cursor-pointer carousel-next p-2"></i>
+                        </div>
+                    </div>
+
+                    <div class="carousel hide-scrollbar mt-6"> <!-- Más padding/margen superior agregado aquí -->
+                        <!-- Card Kit Básico -->
+                        <div class="carousel-card border border-gray-200 rounded-lg bg-white p-4 !flex-shrink-0 shadow" style="flex-basis: 85%;"> <!-- Tarjeta blanca con borde y sombra -->
+                            <div class="flex items-center gap-3"> <!-- items-start cambiado a items-center -->
+                                <div class="flex-shrink-0"> <!-- Columna de ícono -->
+                                    <div class="icon-placeholder !bg-gray-100 border border-gray-300 !m-0 flex items-center justify-center"><i class="fas fa-tools text-gray-600"></i></div>
+                                </div>
+                                <div class="flex-1"> <!-- Columna de contenido -->
+                                    <h4 class="font-bold text-lg text-gray-900">1. KIT BÁSICO</h4>
+                                    <!-- Lista movida fuera de este div -->
+                                </div>
+                            </div>
+                            <!-- Lista movida aquí para alinear con el padding del card -->
+                            <ul class="text-sm text-gray-600 mt-6 list-disc list-outside space-y-1 text-left pl-5"> <!-- mt-6 para más espacio Y pl-5 para alinear viñeta -->
+                                <li>Paneles en madera 2x3 con revestimiento a elección (Medialuna o Tinglado).</li>
+                                <li>Cerchas 1x4 con elevación 1,20 m.</li>
+                                <li>Caballetes (no incluye limahoyas).</li>
+                            </ul>
+                            <div class="mt-3 p-3 bg-gray-100 rounded-md text-xs italic text-gray-700 ml-5"> <!-- ml-5 para alinear con texto de la lista -->
+                                Ideal para quienes buscan construir por etapas o personalizar terminaciones.
+                            </div>
+                        </div>
+                        <!-- Card Kit Intermedio -->
+                        <div class="carousel-card border border-gray-200 rounded-lg bg-white p-4 !flex-shrink-0 shadow" style="flex-basis: 85%;">
+                            <div class="flex items-center gap-3"> <!-- items-start cambiado a items-center -->
+                                <div class="flex-shrink-0">
+                                    <div class="icon-placeholder !bg-gray-100 border border-gray-300 !m-0 flex items-center justify-center"><i class="fas fa-hammer text-gray-600"></i></div>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-lg text-gray-900">2. KIT INTERMEDIO</h4>
+                                </div>
+                            </div>
+                            <ul class="text-sm text-gray-600 mt-6 list-disc list-outside space-y-1 text-left pl-5"> <!-- mt-6 y pl-5 -->
+                                <li>Incluye todo lo del Kit Básico más:</li>
+                                <li>Ventanas de madera con marco.</li>
+                                <li>Placas de yeso cartón 10 mm en cielo y 1 cara de panel interior.</li>
+                            </ul>
+                            <div class="mt-3 p-3 bg-gray-100 rounded-md text-xs italic text-gray-700 ml-5"> <!-- ml-5 -->
+                                Recomendado para un acabado interior básico y entrega más rápida.
+                            </div>
+                        </div>
+                        <!-- Card Super Kit -->
+                        <div class="carousel-card border border-gray-200 rounded-lg bg-white p-4 !flex-shrink-0 shadow" style="flex-basis: 85%;">
+                            <div class="flex items-center gap-3"> <!-- items-start cambiado a items-center -->
+                                <div class="flex-shrink-0">
+                                    <div class="icon-placeholder !bg-gray-100 border border-gray-300 !m-0 flex items-center justify-center"><i class="fas fa-home text-gray-600"></i></div>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-lg text-gray-900">3. SUPER KIT</h4>
+                                </div>
+                            </div>
+                            <ul class="text-sm text-gray-600 mt-6 list-disc list-outside space-y-1 text-left pl-5"> <!-- mt-6 y pl-5 -->
+                                <li>Incluye los Kits Básico e Intermedio más:</li>
+                                <li>Puertas exteriores de pino.</li>
+                                <li>Placas de yeso cartón 10 mm en ambas caras de panel interior y exterior.</li>
+                                <li>Piso completo: pilotes impregnados, vigas maestras, vigas de piso y terciado estructural 18 mm.</li>
+                            </ul>
+                            <div class="mt-3 p-3 bg-gray-100 rounded-md text-xs italic text-gray-700 ml-5"> <!-- ml-5 -->
+                                Opción más completa, lista para instalación inmediata.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 7. Sección de Adicionales -->
                 <section class="section-padding bg-gray-50 carousel-container">
                     <div class="flex justify-between items-center">
                         <h2 class="section-title !text-left !m-0">Adicionales para tu casa</h2>
@@ -555,9 +667,16 @@
 
                 <!-- Ubicación -->
                 <section class="section-padding">
+                    <h3 class="font-bold text-lg mb-3">Ubicación RM</h3>
                     <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden border-2 border-dashed border-gray-300">
                          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13204.66179401764!2d-70.749199!3d-33.851957!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662e0887012351d%3A0x7d636384560b38cd!2sCasas%20prefabricadas%20So%C3%B1arte!5e0!3m2!1ses-419!2sar!4v1678886400000" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
+                    
+                    <h3 class="font-bold text-lg mt-6 mb-3">Ubicación Coquimbo</h3>
+                    <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden border-2 border-dashed border-gray-300">
+                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.937255627209!2d-71.36961202821924!3d-30.00995797427303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9691cfb948b4191d%3A0xdb37cffe5765b1ef!2sCasas%20So%C3%B1arte%20Spa!5e0!3m2!1ses!2scl!4v1763128548916!5m2!1ses!2scl" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+
                     <div class="mt-6 space-y-4 text-gray-700">
                         <div class="flex items-start gap-3">
                             <i class="fas fa-map-marker-alt mt-1 text-gray-500"></i>
@@ -679,5 +798,3 @@
     </script>
 </body>
 </html>
-
-
