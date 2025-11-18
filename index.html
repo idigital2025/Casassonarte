@@ -4,797 +4,490 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wireframe Mobile - Casas Soñarte</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- 1. FUENTE: Cargar Inter directamente (Google Fonts suele ser muy estable) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- 2. ESTILOS DE RESPALDO (CRÍTICO): Esto asegura que se vea bien aunque falle Tailwind -->
     <style>
-        /* Estilos para simular un dispositivo móvil y elementos de wireframe */
-        html {
-            scroll-behavior: smooth;
-        }
         body {
+            font-family: 'Inter', sans-serif; /* Asegura que no salga Times New Roman */
+            margin: 0;
             background-color: #f0f2f5;
-            font-family: 'Inter', sans-serif;
             display: flex;
             justify-content: center;
-            padding: 2rem 0;
+            min-height: 100vh;
         }
+        /* Estilos base por si falla la carga del script */
         .mobile-container {
-            width: 390px;
-            max-width: 100%;
-            background-color: #ffffff;
-            border: 10px solid #1f2937;
-            border-radius: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            margin: 20px auto;
+            min-height: 800px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        /* Ocultar scrollbars por defecto para estética */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+
+    <!-- 3. TAILWIND CSS (Script de diseño) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 4. ICONOS: Cambiado de Cloudflare a jsDelivr para evitar caídas -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+    
+    <!-- Configuración Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: { red: '#dc2626', dark: '#1f2937' }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos específicos que Tailwind necesita ayuda para renderizar en modo CDN */
+        .mobile-container {
+            border: 12px solid #1f2937;
+            border-radius: 45px;
             overflow: hidden;
         }
         .mobile-screen {
-            height: 844px; /* Altura de un iPhone 14 Pro aprox. */
+            height: 844px;
             overflow-y: auto;
+            background-color: white;
             position: relative;
         }
-        /* Scrollbar para la vista mobile */
-        .mobile-screen::-webkit-scrollbar {
-            width: 4px;
-        }
-        .mobile-screen::-webkit-scrollbar-thumb {
-            background: #d1d5db;
-            border-radius: 2px;
-        }
+        /* Utilidades */
         .placeholder-box {
-            background-color: #e5e7eb;
-            border: 2px dashed #9ca3af;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6b7280;
-            font-size: 0.875rem;
-            text-align: center;
+            background-color: #e5e7eb; border: 2px dashed #9ca3af;
+            display: flex; align-items: center; justify-content: center;
+            color: #6b7280; font-size: 0.875rem; text-align: center;
         }
         .icon-placeholder {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin: 0 auto 0.5rem;
+            width: 50px; height: 50px; border-radius: 50%; margin: 0 auto 0.5rem;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
         }
-        .btn-primary {
-            background-color: #9ca3af;
-            color: #11182b;
-            font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            transition: background-color 0.2s;
-        }
-        .btn-primary:hover {
-            background-color: #6b7280;
-        }
-        .btn-secondary {
-            background-color: transparent;
-            border: 2px solid #9ca3af;
-            color: #4b5563;
-            font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            transition: background-color 0.2s, color 0.2s;
-        }
-        .btn-secondary:hover {
-            background-color: #f3f4f6;
-        }
-        .btn-red {
-            background-color: #dc2626;
-            color: white;
-        }
-         .btn-red:hover {
-            background-color: #b91c1c;
-        }
-        .section-padding {
-            padding: 2rem 1.25rem;
-        }
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1f2937;
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
-        .section-subtitle {
-            font-size: 0.95rem;
-            color: #4b5563;
-            text-align: center;
-            max-width: 90%;
-            margin: 0 auto 1.5rem;
-        }
-        /* Estilo para carruseles */
-        .carousel {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 1rem;
-            padding-bottom: 1rem;
-        }
-        .carousel-card {
-            flex: 0 0 70%;
-            scroll-snap-align: start;
-        }
-        .sticky-cta {
-            position: absolute;
-        }
-        /* Ocultar scrollbar pero permitir scroll */
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
-        /* Estilos para el nuevo carrusel de proceso */
+        /* Carruseles */
+        .carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1rem; padding-bottom: 1rem; }
+        .carousel-card { flex: 0 0 70%; scroll-snap-align: start; }
+        
+        /* Tabs */
         .process-tab {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #d1d5db;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
+            width: 10px; height: 10px; border-radius: 50%; background-color: #d1d5db;
+            cursor: pointer; transition: all 0.3s;
         }
-        .process-tab.active {
-            background-color: #4b5563;
-            transform: scale(1.2);
-        }
+        .process-tab.active { background-color: #4b5563; transform: scale(1.3); }
     </style>
 </head>
 <body>
     <div class="mobile-container">
         <div class="mobile-screen">
             <!-- 1. Header -->
-            <header class="bg-white p-4 flex justify-between items-center sticky top-0 z-10 shadow-sm">
-                <div class="text-2xl text-gray-700">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <div class="h-8 w-32 placeholder-box text-sm">Logotipo</div>
-                 <!-- CTA Sticky -->
-                <a href="#" class="btn-primary btn-red text-sm font-bold py-2 px-4 rounded-lg shadow-md">Cotizar ahora</a>
+            <header class="bg-white p-4 flex justify-between items-center sticky top-0 z-50 shadow-sm w-full box-border">
+                <div class="text-2xl text-gray-700 cursor-pointer"><i class="fas fa-bars"></i></div>
+                <div class="h-8 w-32 placeholder-box text-sm bg-gray-100 border-gray-300 text-gray-500">Logotipo</div>
+                <a href="#formulario" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold py-2 px-3 rounded-lg shadow transition-colors decoration-0">Cotizar ahora</a>
             </header>
 
             <main>
-                <!-- 2. Hero / Banner Principal -->
-                <section class="relative h-96">
-                    <div class="absolute inset-0 placeholder-box">Imagen WebP</div>
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-6 text-white">
-                        <h1 class="text-2xl font-bold leading-tight">Casas prefabricadas para todo Chile, con diseño y confianza</h1>
-                        <p class="mt-2 text-lg">Modelos desde $9.5 millones</p>
-                        <div class="flex gap-4 mt-6">
-                            <a href="#catalogo" class="btn-secondary !border-white !text-white flex-1 text-sm py-3">Ver modelos</a>
-                        </div>
+                <!-- 2. Hero -->
+                <section class="relative h-96 w-full">
+                    <div class="absolute inset-0 placeholder-box border-none bg-gray-300">Imagen Principal WebP</div>
+                    <div class="absolute inset-0 bg-black/50 flex flex-col justify-end p-6 text-white">
+                        <h1 class="text-2xl font-bold leading-tight mb-2">Casas prefabricadas para todo Chile, con diseño y confianza</h1>
+                        <p class="text-lg mb-6 font-medium">Modelos desde $9.5 millones</p>
+                        <a href="#catalogo" class="border-2 border-white text-white font-semibold py-3 px-6 rounded-lg text-center hover:bg-white hover:text-black transition-colors w-full block">Ver modelos</a>
                     </div>
                 </section>
 
                 <!-- 3. Proceso de compra -->
-                <section class="section-padding bg-gray-50 overflow-hidden">
-                    <h2 class="section-title">Proceso de compra de tu casa prefabricada</h2>
-                    <p class="section-subtitle !text-sm">Conoce los pasos esenciales y los consejos expertos para garantizar una experiencia de compra exitosa de casas prefabricadas. ¡Hazlo fácil y seguro!</p>
-                    <div id="process-carousel-container" class="relative">
-                         <div id="process-carousel" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar">
-                            <!-- Slide 1 -->
-                            <div class="w-full flex-shrink-0 snap-center text-center p-4">
-                                <div class="icon-placeholder placeholder-box"><i class="fas fa-calendar-check text-gray-500"></i></div>
-                                <h3 class="font-semibold text-gray-800 text-sm">Agenda una visita</h3>
-                                <p class="text-xs text-gray-500 mt-1">Escribiéndonos a nuestro WhatsApp o RRSS</p>
-                            </div>
-                            <!-- Slide 2 -->
-                            <div class="w-full flex-shrink-0 snap-center text-center p-4">
-                                <div class="icon-placeholder placeholder-box"><i class="fas fa-file-signature text-gray-500"></i></div>
-                                <h3 class="font-semibold text-gray-800 text-sm">Generamos un contrato</h3>
-                                <p class="text-xs text-gray-500 mt-1">Acordamos la fecha de entrega</p>
-                            </div>
-                             <!-- Slide 3 -->
-                            <div class="w-full flex-shrink-0 snap-center text-center p-4">
-                                <div class="icon-placeholder placeholder-box"><i class="fas fa-money-bill-wave text-gray-500"></i></div>
-                                <h3 class="font-semibold text-gray-800 text-sm">Abona solo $100.000</h3>
-                                <p class="text-xs text-gray-500 mt-1">Efectivo, transferencia, débito o crédito</p>
-                            </div>
-                             <!-- Slide 4 -->
-                            <div class="w-full flex-shrink-0 snap-center text-center p-4">
-                                <div class="icon-placeholder placeholder-box"><i class="fas fa-truck text-gray-500"></i></div>
-                                <h3 class="font-semibold text-gray-800 text-sm">Paga el saldo en la entrega</h3>
-                                <p class="text-xs text-gray-500 mt-1">Revisa la carga antes de salir de nuestra fábrica</p>
-                            </div>
+                <section class="section-padding p-6 bg-gray-50">
+                    <h2 class="text-xl font-bold text-center text-gray-800 mb-2">Proceso de compra</h2>
+                    <p class="text-sm text-center text-gray-600 mb-6 px-4">Pasos esenciales para una compra segura y exitosa.</p>
+                    
+                    <div class="relative">
+                        <div id="process-carousel" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar pb-4">
+                            <!-- JS Generado -->
                         </div>
-                        <div id="process-tabs" class="flex justify-center gap-3 mt-4">
-                            <!-- Tabs se generarán con JS -->
-                        </div>
+                        <div id="process-tabs" class="flex justify-center gap-3 mt-2"></div>
                     </div>
                 </section>
                 
-                <!-- 4. Sección cita centrada -->
-                <section class="section-padding bg-gray-800 text-white">
-                     <div class="text-center">
-                        <p class="text-lg italic leading-relaxed">"Es muy importante que los clientes conozcan la fábrica y los materiales, por eso nos interesa compartir el proceso de fabricación en nuestras plantas."</p>
-                        <p class="mt-4 text-sm font-semibold opacity-80">Director de proyectos</p>
-                    </div>
+                <!-- 4. Cita -->
+                <section class="p-8 bg-gray-800 text-white text-center">
+                    <p class="text-lg italic leading-relaxed mb-4">"Es muy importante que los clientes conozcan la fábrica y los materiales, por eso nos interesa compartir el proceso de fabricación."</p>
+                    <p class="text-sm font-semibold opacity-75 uppercase tracking-wide">Director de proyectos</p>
                 </section>
 
-                <!-- 5. Catálogo de Modelos -->
-                <section id="catalogo" class="section-padding">
-                    <h2 class="section-title">Catálogo de Casas Prefabricadas</h2>
-                    <p class="section-subtitle">Explora nuestra colección de casas prefabricadas para encontrar el diseño que se adapte a tus necesidades y estilo de vida</p>
-                    <div class="flex overflow-x-auto pb-4 gap-2 text-sm hide-scrollbar">
-                        <button class="bg-gray-800 text-white py-2 px-4 rounded-full whitespace-nowrap">Todos</button>
-                        <button class="bg-gray-200 text-gray-700 py-2 px-4 rounded-full whitespace-nowrap">Clásico</button>
-                        <button class="bg-gray-200 text-gray-700 py-2 px-4 rounded-full whitespace-nowrap">Modelo T</button>
-                        <button class="bg-gray-200 text-gray-700 py-2 px-4 rounded-full whitespace-nowrap">Cordillera</button>
-                        <button class="bg-gray-200 text-gray-700 py-2 px-4 rounded-full whitespace-nowrap">Mediterráneo</button>
-                        <button class="bg-gray-200 text-gray-700 py-2 px-4 rounded-full whitespace-nowrap">Modelo L</button>
+                <!-- 5. Catálogo -->
+                <section id="catalogo" class="section-padding p-6">
+                    <h2 class="text-xl font-bold text-center text-gray-800 mb-2">Catálogo de Modelos</h2>
+                    <p class="text-sm text-center text-gray-600 mb-6">Diseños adaptados a tu estilo de vida.</p>
+                    
+                    <!-- Filtros -->
+                    <div class="flex overflow-x-auto pb-4 gap-2 text-sm hide-scrollbar mb-4">
+                        <button class="bg-gray-800 text-white py-2 px-5 rounded-full whitespace-nowrap font-medium">Todos</button>
+                        <button class="bg-gray-200 text-gray-700 py-2 px-5 rounded-full whitespace-nowrap font-medium">Clásico</button>
+                        <button class="bg-gray-200 text-gray-700 py-2 px-5 rounded-full whitespace-nowrap font-medium">Modelo T</button>
+                        <button class="bg-gray-200 text-gray-700 py-2 px-5 rounded-full whitespace-nowrap font-medium">Cordillera</button>
+                        <button class="bg-gray-200 text-gray-700 py-2 px-5 rounded-full whitespace-nowrap font-medium">Mediterráneo</button>
+                        <button class="bg-gray-200 text-gray-700 py-2 px-5 rounded-full whitespace-nowrap font-medium">Modelo L</button>
                     </div>
                     
-                    <!-- Carrusel Modelo Clásico -->
-                    <div class="mt-6 carousel-container">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="font-bold text-lg">Modelo Clásico</h3>
-                            <div class="flex gap-2 text-gray-500">
-                                <i class="fas fa-arrow-left cursor-pointer carousel-prev"></i>
-                                <i class="fas fa-arrow-right cursor-pointer carousel-next"></i>
-                            </div>
-                        </div>
-                        <div class="carousel hide-scrollbar">
-                            <!-- Cards Modelo Clásico -->
-                            <script>
-                                const modelosClasico = ["24mt 2A", "36mt 2A", "36mt 2A L", "42mt 2A", "48mt 2A", "54mt 2A", "72mt 2A", "54mt 6A", "108mt 6A", "128mt 6A", "171mt", "72mt L", "83mt L", "117mt L", "141mt", "72mt 6A", "84mt 6A", "120mt 6A", "144mt"];
-                                modelosClasico.forEach(m => {
-                                    document.write(`
-                                    <div class="carousel-card border rounded-lg overflow-hidden shadow-sm bg-white">
-                                        <div class="h-40 placeholder-box">Imagen</div>
-                                        <div class="p-4">
-                                            <h4 class="font-bold">${m} Modelo Clásico</h4>
-                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en RM</em></p>
-                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en IV Reg</em></p>
-                                            <div class="mt-4 flex flex-col gap-2">
-                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha RM</a>
-                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha IV Reg</a>
-                                            </div>
-                                        </div>
-                                    </div>`);
-                                });
-                            </script>
-                        </div>
-                    </div>
-
-                    <!-- Carrusel Modelo T -->
-                    <div class="mt-6 carousel-container">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="font-bold text-lg">Modelo T</h3>
-                             <div class="flex gap-2 text-gray-500">
-                                <i class="fas fa-arrow-left cursor-pointer carousel-prev"></i>
-                                <i class="fas fa-arrow-right cursor-pointer carousel-next"></i>
-                            </div>
-                        </div>
-                        <div class="carousel hide-scrollbar">
-                             <script>
-                                const modelosT = ["63mt Modelo T", "83mt Modelo T", "120mt Modelo T"];
-                                modelosT.forEach(m => {
-                                    document.write(`
-                                    <div class="carousel-card border rounded-lg overflow-hidden shadow-sm bg-white">
-                                        <div class="h-40 placeholder-box">Imagen</div>
-                                        <div class="p-4">
-                                            <h4 class="font-bold">${m}</h4>
-                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en RM</em></p>
-                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en IV Reg</em></p>
-                                            <div class="mt-4 flex flex-col gap-2">
-                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha RM</a>
-                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha IV Reg</a>
-                                            </div>
-                                        </div>
-                                    </div>`);
-                                });
-                            </script>
-                        </div>
-                    </div>
-                    
-                    <!-- Carrusel Modelo Cordillera -->
-                    <div class="mt-6 carousel-container">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="font-bold text-lg">Modelo Cordillera</h3>
-                             <div class="flex gap-2 text-gray-500">
-                                <i class="fas fa-arrow-left cursor-pointer carousel-prev"></i>
-                                <i class="fas fa-arrow-right cursor-pointer carousel-next"></i>
-                            </div>
-                        </div>
-                        <div class="carousel hide-scrollbar">
-                             <script>
-                                const modelosCordillera = ["40mt", "90mt", "60mt", "116mt", "72mt", "170mt"];
-                                modelosCordillera.forEach(m => {
-                                    document.write(`
-                                    <div class="carousel-card border rounded-lg overflow-hidden shadow-sm bg-white">
-                                        <div class="h-40 placeholder-box">Imagen</div>
-                                        <div class="p-4">
-                                            <h4 class="font-bold">${m} Modelo Cordillera</h4>
-                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en RM</em></p>
-                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en IV Reg</em></p>
-                                            <div class="mt-4 flex flex-col gap-2">
-                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha RM</a>
-                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha IV Reg</a>
-                                            </div>
-                                        </div>
-                                    </div>`);
-                                });
-                            </script>
-                        </div>
-                    </div>
-
-                    <!-- Carrusel Modelo Mediterráneo -->
-                    <div class="mt-6 carousel-container">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="font-bold text-lg">Modelo Mediterráneo</h3>
-                             <div class="flex gap-2 text-gray-500">
-                                <i class="fas fa-arrow-left cursor-pointer carousel-prev"></i>
-                                <i class="fas fa-arrow-right cursor-pointer carousel-next"></i>
-                            </div>
-                        </div>
-                        <div class="carousel hide-scrollbar">
-                             <script>
-                                const modelosMediterraneo = ["36mt", "83mt", "141mt", "63mt", "117mt", "72mt", "128mt"];
-                                modelosMediterraneo.forEach(m => {
-                                    document.write(`
-                                    <div class="carousel-card border rounded-lg overflow-hidden shadow-sm bg-white">
-                                        <div class="h-40 placeholder-box">Imagen</div>
-                                        <div class="p-4">
-                                            <h4 class="font-bold">${m} Modelo Mediterráneo</h4>
-                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en RM</em></p>
-                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en IV Reg</em></p>
-                                            <div class="mt-4 flex flex-col gap-2">
-                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha RM</a>
-                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha IV Reg</a>
-                                            </div>
-                                        </div>
-                                    </div>`);
-                                });
-                            </script>
-                        </div>
-                    </div>
-
-                    <!-- Carrusel Modelo L -->
-                    <div class="mt-6 carousel-container">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="font-bold text-lg">Modelo L</h3>
-                             <div class="flex gap-2 text-gray-500">
-                                <i class="fas fa-arrow-left cursor-pointer carousel-prev"></i>
-                                <i class="fas fa-arrow-right cursor-pointer carousel-next"></i>
-                            </div>
-                        </div>
-                        <div class="carousel hide-scrollbar">
-                             <script>
-                                const modelosL = ["36mt 2A Modelo Clásico L", "117mt Modelo Clásico L"];
-                                modelosL.forEach(m => {
-                                    document.write(`
-                                    <div class="carousel-card border rounded-lg overflow-hidden shadow-sm bg-white">
-                                        <div class="h-40 placeholder-box">Imagen</div>
-                                        <div class="p-4">
-                                            <h4 class="font-bold">${m}</h4>
-                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en RM</em></p>
-                                            <p class="text-gray-600 font-semibold mt-1">Desde $XX millones <em class="text-xs font-normal not-italic">en IV Reg</em></p>
-                                            <div class="mt-4 flex flex-col gap-2">
-                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha RM</a>
-                                                <a href="#" class="btn-secondary !text-sm w-full">Ver ficha IV Reg</a>
-                                            </div>
-                                        </div>
-                                    </div>`);
-                                });
-                            </script>
-                        </div>
-                    </div>
-
+                    <!-- Contenedores de Modelos (Se llenan con JS) -->
+                    <div id="catalogo-container" class="space-y-8"></div>
                 </section>
                 
-                <!-- Nueva Sección KITS -->
-                <section class="section-padding bg-red-600 carousel-container"> <!-- Fondo de sección rojo -->
-                    <h2 class="section-title !text-white">¿Qué incluye cada casa?</h2> <!-- Título blanco -->
-                    <p class="!text-white !text-sm text-center mb-6">Cada modelo de casa se entrega según el kit que elijas<br>Los kits definen materiales, terminaciones y nivel de instalación. Revisa las diferencias y elige el que mejor se adapte a tus necesidades</p>
+                <!-- 6. KITS (Sección Roja) -->
+                <section class="section-padding p-6 bg-red-600 text-white">
+                    <h2 class="text-xl font-bold text-center text-white mb-2">¿Qué incluye cada casa?</h2>
+                    <p class="text-white/90 text-sm text-center mb-6 leading-relaxed">Cada modelo se entrega según el kit que elijas.<br>Revisa las diferencias y elige el mejor para ti.</p>
                     
-                    <div class="flex justify-center items-center mb-4">
-                         <div class="flex gap-3 text-gray-200"> <!-- Flechas claras -->
-                            <i class="fas fa-arrow-left cursor-pointer carousel-prev p-2"></i>
-                            <i class="fas fa-arrow-right cursor-pointer carousel-next p-2"></i>
-                        </div>
+                    <!-- Navegación Kit -->
+                    <div class="flex justify-center items-center gap-6 mb-6 text-white/80 text-2xl">
+                        <i class="fas fa-arrow-left cursor-pointer hover:text-white" onclick="scrollKit(-1)"></i>
+                        <i class="fas fa-arrow-right cursor-pointer hover:text-white" onclick="scrollKit(1)"></i>
                     </div>
 
-                    <div class="carousel hide-scrollbar mt-6"> <!-- Más padding/margen superior agregado aquí -->
-                        <!-- Card Kit Básico -->
-                        <div class="carousel-card border border-gray-200 rounded-lg bg-white p-4 !flex-shrink-0 shadow" style="flex-basis: 85%;"> <!-- Tarjeta blanca con borde y sombra -->
-                            <div class="flex items-center gap-3"> <!-- items-start cambiado a items-center -->
-                                <div class="flex-shrink-0"> <!-- Columna de ícono -->
-                                    <div class="icon-placeholder !bg-gray-100 border border-gray-300 !m-0 flex items-center justify-center"><i class="fas fa-tools text-gray-600"></i></div>
+                    <div id="kit-carousel" class="carousel hide-scrollbar snap-x">
+                        <!-- Kit Básico -->
+                        <div class="carousel-card border border-white/20 rounded-xl bg-white p-6 shadow-lg text-gray-800 snap-center" style="flex-basis: 85%;">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 text-xl border border-gray-200">
+                                    <i class="fas fa-tools"></i>
                                 </div>
-                                <div class="flex-1"> <!-- Columna de contenido -->
-                                    <h4 class="font-bold text-lg text-gray-900">1. KIT BÁSICO</h4>
-                                    <!-- Lista movida fuera de este div -->
-                                </div>
+                                <h4 class="font-bold text-xl">1. KIT BÁSICO</h4>
                             </div>
-                            <!-- Lista movida aquí para alinear con el padding del card -->
-                            <ul class="text-sm text-gray-600 mt-6 list-disc list-outside space-y-1 text-left pl-5"> <!-- mt-6 para más espacio Y pl-5 para alinear viñeta -->
-                                <li>Paneles en madera 2x3 con revestimiento a elección (Medialuna o Tinglado).</li>
+                            <ul class="text-sm text-gray-600 space-y-2 list-disc pl-5 text-left">
+                                <li>Paneles madera 2x3 (Medialuna/Tinglado).</li>
                                 <li>Cerchas 1x4 con elevación 1,20 m.</li>
-                                <li>Caballetes (no incluye limahoyas).</li>
+                                <li>Fieltro asfáltico y zinc.</li>
+                                <li>Caballetes (sin limahoyas).</li>
                             </ul>
-                            <div class="mt-3 p-3 bg-gray-100 rounded-md text-xs italic text-gray-700 ml-5"> <!-- ml-5 para alinear con texto de la lista -->
-                                Ideal para quienes buscan construir por etapas o personalizar terminaciones.
+                            <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500 italic border border-gray-100">
+                                Ideal para construir por etapas.
                             </div>
                         </div>
-                        <!-- Card Kit Intermedio -->
-                        <div class="carousel-card border border-gray-200 rounded-lg bg-white p-4 !flex-shrink-0 shadow" style="flex-basis: 85%;">
-                            <div class="flex items-center gap-3"> <!-- items-start cambiado a items-center -->
-                                <div class="flex-shrink-0">
-                                    <div class="icon-placeholder !bg-gray-100 border border-gray-300 !m-0 flex items-center justify-center"><i class="fas fa-hammer text-gray-600"></i></div>
+
+                        <!-- Kit Intermedio -->
+                        <div class="carousel-card border border-white/20 rounded-xl bg-white p-6 shadow-lg text-gray-800 snap-center" style="flex-basis: 85%;">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 text-xl border border-gray-200">
+                                    <i class="fas fa-hammer"></i>
                                 </div>
-                                <div class="flex-1">
-                                    <h4 class="font-bold text-lg text-gray-900">2. KIT INTERMEDIO</h4>
-                                </div>
+                                <h4 class="font-bold text-xl">2. KIT INTERMEDIO</h4>
                             </div>
-                            <ul class="text-sm text-gray-600 mt-6 list-disc list-outside space-y-1 text-left pl-5"> <!-- mt-6 y pl-5 -->
-                                <li>Incluye todo lo del Kit Básico más:</li>
+                            <ul class="text-sm text-gray-600 space-y-2 list-disc pl-5 text-left">
+                                <li>Todo lo del Kit Básico.</li>
                                 <li>Ventanas de madera con marco.</li>
-                                <li>Placas de yeso cartón 10 mm en cielo y 1 cara de panel interior.</li>
+                                <li>Puertas interiores terciado.</li>
+                                <li>Yeso cartón 10mm (cielo y 1 cara).</li>
                             </ul>
-                            <div class="mt-3 p-3 bg-gray-100 rounded-md text-xs italic text-gray-700 ml-5"> <!-- ml-5 -->
-                                Recomendado para un acabado interior básico y entrega más rápida.
+                            <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500 italic border border-gray-100">
+                                Para entrega más rápida.
                             </div>
                         </div>
-                        <!-- Card Super Kit -->
-                        <div class="carousel-card border border-gray-200 rounded-lg bg-white p-4 !flex-shrink-0 shadow" style="flex-basis: 85%;">
-                            <div class="flex items-center gap-3"> <!-- items-start cambiado a items-center -->
-                                <div class="flex-shrink-0">
-                                    <div class="icon-placeholder !bg-gray-100 border border-gray-300 !m-0 flex items-center justify-center"><i class="fas fa-home text-gray-600"></i></div>
+
+                        <!-- Super Kit -->
+                        <div class="carousel-card border border-white/20 rounded-xl bg-white p-6 shadow-lg text-gray-800 snap-center" style="flex-basis: 85%;">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 text-xl border border-gray-200">
+                                    <i class="fas fa-home"></i>
                                 </div>
-                                <div class="flex-1">
-                                    <h4 class="font-bold text-lg text-gray-900">3. SUPER KIT</h4>
-                                </div>
+                                <h4 class="font-bold text-xl">3. SUPER KIT</h4>
                             </div>
-                            <ul class="text-sm text-gray-600 mt-6 list-disc list-outside space-y-1 text-left pl-5"> <!-- mt-6 y pl-5 -->
-                                <li>Incluye los Kits Básico e Intermedio más:</li>
-                                <li>Puertas exteriores de pino.</li>
-                                <li>Placas de yeso cartón 10 mm en ambas caras de panel interior y exterior.</li>
-                                <li>Piso completo: pilotes impregnados, vigas maestras, vigas de piso y terciado estructural 18 mm.</li>
+                            <ul class="text-sm text-gray-600 space-y-2 list-disc pl-5 text-left">
+                                <li>Todo lo anterior + Puertas pino ext.</li>
+                                <li>Yeso cartón ambas caras.</li>
+                                <li>Piso completo (pilotes, vigas, terciado).</li>
                             </ul>
-                            <div class="mt-3 p-3 bg-gray-100 rounded-md text-xs italic text-gray-700 ml-5"> <!-- ml-5 -->
-                                Opción más completa, lista para instalación inmediata.
+                            <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500 italic border border-gray-100">
+                                Lista para instalación inmediata.
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- 7. Sección de Adicionales -->
-                <section class="section-padding bg-gray-50 carousel-container">
-                    <div class="flex justify-between items-center">
-                        <h2 class="section-title !text-left !m-0">Adicionales para tu casa</h2>
-                         <div class="flex gap-2 text-gray-500">
-                            <i class="fas fa-arrow-left cursor-pointer carousel-prev"></i>
-                            <i class="fas fa-arrow-right cursor-pointer carousel-next"></i>
+                <!-- 7. Adicionales -->
+                <section class="section-padding p-6 bg-gray-50">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold text-gray-800">Adicionales</h2>
+                        <div class="text-gray-400 space-x-2">
+                            <i class="fas fa-arrow-left"></i> <i class="fas fa-arrow-right"></i>
                         </div>
                     </div>
-                    <div class="carousel hide-scrollbar mt-4">
-                        <div class="carousel-card border rounded-lg bg-white p-4 text-center !flex-shrink-0" style="flex-basis: 70%;">
-                            <div class="icon-placeholder placeholder-box"><i class="fas fa-ruler-combined text-gray-500"></i></div>
-                            <h4 class="font-bold mt-2">TEJAS ASFÁLTICAS</h4>
-                            <ul class="text-xs text-gray-500 mt-2 list-disc list-inside text-left">
-                                <li>Incluye OSB.</li>
-                                <li>Incluye un 30% extra de cerchas.</li>
-                            </ul>
-                        </div>
-                        <div class="carousel-card border rounded-lg bg-white p-4 text-center !flex-shrink-0" style="flex-basis: 70%;">
-                           <div class="icon-placeholder placeholder-box"><i class="fas fa-columns text-gray-500"></i></div>
-                            <h4 class="font-bold mt-2">VIGAS A LA VISTA</h4>
-                            <ul class="text-xs text-gray-500 mt-2 list-disc list-inside text-left">
-                                <li>En living comedor.</li>
-                                <li>Incluye tablas de cielo.</li>
-                            </ul>
-                        </div>
-                        <div class="carousel-card border rounded-lg bg-white p-4 text-center !flex-shrink-0" style="flex-basis: 70%;">
-                           <div class="icon-placeholder placeholder-box"><i class="fas fa-fill-drip text-gray-500"></i></div>
-                            <h4 class="font-bold mt-2">REVESTIMIENTO SIDING</h4>
-                            <ul class="text-xs text-gray-500 mt-2 list-disc list-inside text-left">
-                               <li>Material fibrocemento.</li>
-                               <li>Color a elección.</li>
-                               <li>Incluye OSB.</li>
-                            </ul>
-                        </div>
-                         <div class="carousel-card border rounded-lg bg-white p-4 text-center !flex-shrink-0" style="flex-basis: 70%;">
-                           <div class="icon-placeholder placeholder-box"><i class="fas fa-border-all text-gray-500"></i></div>
-                            <h4 class="font-bold mt-2">VENTANAS DE ALUMINIO</h4>
-                             <ul class="text-xs text-gray-500 mt-2 list-disc list-inside text-left">
-                               <li>Vidrios incluidos.</li>
-                            </ul>
-                        </div>
+                    <div id="adicionales-container" class="carousel hide-scrollbar">
+                        <!-- Se llena con JS -->
                     </div>
                 </section>
 
-                <!-- 7. Testimonios de Clientes -->
-                <section class="section-padding carousel-container">
-                    <div class="flex justify-between items-center">
-                        <h2 class="section-title !text-left !m-0">Lo que dicen nuestros clientes</h2>
-                        <div class="flex gap-2 text-gray-500">
-                            <i class="fas fa-arrow-left cursor-pointer carousel-prev"></i>
-                            <i class="fas fa-arrow-right cursor-pointer carousel-next"></i>
-                        </div>
-                    </div>
-                    <div class="carousel hide-scrollbar mt-4">
-                        <div class="carousel-card border rounded-lg bg-white p-4 !flex-shrink-0" style="flex-basis: 80%;">
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 rounded-full placeholder-box">Foto</div>
-                                <div>
-                                    <p class="font-bold">Nombre Cliente</p>
-                                    <p class="text-sm text-gray-500">Comuna</p>
-                                </div>
-                            </div>
-                            <p class="text-sm text-gray-600 italic mt-3">"Cita breve del testimonio del cliente sobre su experiencia positiva con la empresa."</p>
-                        </div>
-                         <div class="carousel-card border rounded-lg bg-white p-4 !flex-shrink-0" style="flex-basis: 80%;">
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 rounded-full placeholder-box">Foto</div>
-                                <div>
-                                    <p class="font-bold">Otro Cliente</p>
-                                    <p class="text-sm text-gray-500">Comuna</p>
-                                </div>
-                            </div>
-                            <p class="text-sm text-gray-600 italic mt-3">"Otra cita breve del testimonio del cliente sobre su experiencia positiva."</p>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- 8. Preguntas Frecuentes (FAQ resumida) -->
-                <section class="section-padding bg-gray-50">
-                    <h2 class="section-title">Preguntas Frecuentes</h2>
-                     <div class="space-y-3 mt-4">
-                        <div class="border-b pb-3">
-                            <details class="group">
-                                <summary class="flex justify-between items-center font-semibold cursor-pointer list-none">
-                                    ¿Cómo se entregan las casas?
-                                    <i class="fas fa-chevron-down transition-transform duration-300 group-open:rotate-180"></i>
-                                </summary>
-                                <p class="text-gray-600 mt-2 text-sm">Aquí iría la respuesta a la pregunta frecuente, explicando los detalles de la entrega.</p>
-                            </details>
-                        </div>
-                        <div class="border-b pb-3">
-                           <details class="group">
-                                <summary class="flex justify-between items-center font-semibold cursor-pointer list-none">
-                                    ¿Cuál es el tiempo de entrega?
-                                    <i class="fas fa-chevron-down transition-transform duration-300 group-open:rotate-180"></i>
-                                </summary>
-                                <p class="text-gray-600 mt-2 text-sm">Aquí iría la respuesta sobre el tiempo estimado de entrega de las casas prefabricadas.</p>
-                            </details>
-                        </div>
-                         <div class="border-b pb-3">
-                            <details class="group">
-                                <summary class="flex justify-between items-center font-semibold cursor-pointer list-none">
-                                    ¿Qué incluye el precio?
-                                    <i class="fas fa-chevron-down transition-transform duration-300 group-open:rotate-180"></i>
-                                </summary>
-                                <p class="text-gray-600 mt-2 text-sm">Detalle de lo que incluye el kit básico y los costos adicionales que podrían existir.</p>
-                            </details>
-                        </div>
-                    </div>
-                    <a href="#" class="btn-secondary block mt-6 text-center">Ver más preguntas</a>
-                </section>
-
-                <!-- 9. Sección Seguridad y Confianza, Video, Nosotros, Formulario y Footer (sin cambios) -->
-                <!-- 9. Sección Seguridad y Confianza -->
-                <section class="section-padding">
-                    <h2 class="section-title">Seguridad y Confianza</h2>
-                    <ul class="mt-4 space-y-3">
-                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-gray-600"></i><span class="text-gray-700">Atención personalizada y/o en linea.</span></li>
-                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-gray-600"></i><span class="text-gray-700">Todas nuestras sucursales poseen fabrica.</span></li>
-                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-gray-600"></i><span class="text-gray-700">Te mostramos nuestro proceso de fabricacion.</span></li>
-                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-gray-600"></i><span class="text-gray-700">Verás los materiales antes de comprar.</span></li>
-                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-gray-600"></i><span class="text-gray-700">Te llamamos antes de la fabricación.</span></li>
-                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-gray-600"></i><span class="text-gray-700">Somos flexibles en la entrega.</span></li>
-                    </ul>
-                </section>
-
-                <!-- 10. Video Vive la experiencia -->
-                <section class="section-padding bg-gray-50">
-                    <h2 class="section-title">Vive la experiencia</h2>
-                    <div class="aspect-video mt-4 rounded-lg placeholder-box flex items-center justify-center">
-                        <i class="fas fa-play-circle text-4xl text-gray-500"></i>
+                <!-- 8. Testimonios -->
+                <section class="section-padding p-6">
+                    <h2 class="text-xl font-bold text-center text-gray-800 mb-6">Clientes Felices</h2>
+                    <div id="testimonios-container" class="carousel hide-scrollbar">
+                        <!-- Se llena con JS -->
                     </div>
                 </section>
 
-                <!-- 11. Sección Nosotros -->
-                <section class="section-padding">
-                     <h2 class="section-title">Casa Soñarte</h2>
-                     <div class="mt-4">
-                        <div class="w-full h-48 placeholder-box mb-4 rounded-lg">Imagen</div>
-                        <div>
-                            <h3 class="font-bold text-lg">Fabricamos la Casa de tus sueños</h3>
-                            <p class="text-sm text-gray-600 mt-2">Somos Casas Soñarte una empresa comprometida con fabricar productos de calidad a bajos precios, entregando a nuestros clientes la oportunidad de vivir en un hogar confortable y de calidad. Ofrecemos más de 30 modelos de casas para las diferentes necesidades que cada familia requiera.</p>
-                             <div class="space-y-3 mt-4">
-                                <div class="border-b pb-3">
-                                    <details class="group">
-                                        <summary class="flex justify-between items-center font-semibold cursor-pointer list-none">
-                                            Misión
-                                            <i class="fas fa-plus transition-transform duration-300 group-open:rotate-45"></i>
-                                        </summary>
-                                        <p class="text-gray-600 mt-2 text-sm">El texto de la misión de la empresa iría aquí.</p>
-                                    </details>
-                                </div>
-                                <div class="border-b pb-3">
-                                     <details class="group">
-                                        <summary class="flex justify-between items-center font-semibold cursor-pointer list-none">
-                                            Visión
-                                            <i class="fas fa-plus transition-transform duration-300 group-open:rotate-45"></i>
-                                        </summary>
-                                        <p class="text-gray-600 mt-2 text-sm">El texto de la visión de la empresa iría aquí.</p>
-                                    </details>
-                                </div>
-                            </div>
-                        </div>
-                     </div>
+                <!-- 9. FAQ -->
+                <section class="section-padding p-6 bg-gray-50">
+                    <h2 class="text-xl font-bold text-center text-gray-800 mb-6">Preguntas Frecuentes</h2>
+                    <div class="space-y-2 mt-4">
+                        <details class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 group">
+                            <summary class="flex justify-between items-center font-semibold cursor-pointer list-none">
+                                ¿Cómo se entregan? <i class="fas fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
+                            </summary>
+                            <p class="text-gray-600 mt-3 text-sm">Respuesta sobre la entrega...</p>
+                        </details>
+                        <details class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 group">
+                            <summary class="flex justify-between items-center font-semibold cursor-pointer list-none">
+                                ¿Tiempo de entrega? <i class="fas fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
+                            </summary>
+                            <p class="text-gray-600 mt-3 text-sm">Respuesta sobre tiempos...</p>
+                        </details>
+                        <details class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 group">
+                            <summary class="flex justify-between items-center font-semibold cursor-pointer list-none">
+                                ¿Qué incluye el precio? <i class="fas fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
+                            </summary>
+                            <p class="text-gray-600 mt-3 text-sm">Respuesta sobre precios...</p>
+                        </details>
+                    </div>
+                    <button class="w-full mt-6 py-3 border border-gray-300 rounded-lg text-gray-600 font-semibold hover:bg-gray-50">Ver todas las preguntas</button>
                 </section>
-                
-                <!-- 12. Formulario de Cotización y Ubicación -->
-                <section class="section-padding bg-gray-50">
-                    <h2 class="section-title">Contacto</h2>
-                    <p class="section-subtitle">Completa el siguiente formulario y nos contactaremos contigo a la brevedad.</p>
-                    <form class="mt-6 space-y-5">
-                        <div>
-                            <label class="text-sm font-medium text-gray-700">Nombre</label>
-                            <input type="text" class="w-full mt-1 p-3 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400" placeholder="Tu nombre">
-                        </div>
-                        <div>
-                            <label class="text-sm font-medium text-gray-700">E-Mail</label>
-                            <input type="email" class="w-full mt-1 p-3 rounded-md bg-white border border-gray-300" placeholder="tu.correo@ejemplo.com">
-                        </div>
-                        <div>
-                            <label class="text-sm font-medium text-gray-700">Modelo a cotizar</label>
-                            <div class="mt-2 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                                <label class="flex items-center"><input type="radio" name="modelo" class="mr-2"> Clásico</label>
-                                <label class="flex items-center"><input type="radio" name="modelo" class="mr-2"> Modelo T</label>
-                                <label class="flex items-center"><input type="radio" name="modelo" class="mr-2"> Cordillera</label>
-                                <label class="flex items-center"><input type="radio" name="modelo" class="mr-2"> Mediterráneo</label>
+
+                <!-- 10. Seguridad -->
+                <section class="section-padding p-6">
+                    <h2 class="text-xl font-bold text-center text-gray-800 mb-6">Seguridad y Confianza</h2>
+                    <div class="mt-6 space-y-4">
+                        <div class="flex gap-3 items-start"><i class="fas fa-check-circle text-green-600 mt-1"></i> <span class="text-sm text-gray-700">Atención personalizada presencial y online.</span></div>
+                        <div class="flex gap-3 items-start"><i class="fas fa-check-circle text-green-600 mt-1"></i> <span class="text-sm text-gray-700">Todas las sucursales tienen fábrica.</span></div>
+                        <div class="flex gap-3 items-start"><i class="fas fa-check-circle text-green-600 mt-1"></i> <span class="text-sm text-gray-700">Visitas a fábrica disponibles.</span></div>
+                        <div class="flex gap-3 items-start"><i class="fas fa-check-circle text-green-600 mt-1"></i> <span class="text-sm text-gray-700">Pago contra entrega (saldo).</span></div>
+                    </div>
+                </section>
+
+                <!-- 11. Formulario -->
+                <section id="formulario" class="section-padding p-6 bg-gray-900 text-white">
+                    <h2 class="text-xl font-bold text-center text-white mb-2">Contacto</h2>
+                    <p class="text-sm text-center text-gray-400 mb-6">Déjanos tus datos y te asesoramos.</p>
+                    
+                    <form class="space-y-4 mt-6">
+                        <input type="text" placeholder="Nombre" class="w-full p-3 rounded bg-gray-800 border border-gray-700 focus:border-red-500 outline-none transition-colors">
+                        <input type="email" placeholder="Email" class="w-full p-3 rounded bg-gray-800 border border-gray-700 focus:border-red-500 outline-none transition-colors">
+                        
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-gray-300">Modelo de interés:</label>
+                            <div class="grid grid-cols-2 gap-2 text-sm">
+                                <label class="flex items-center gap-2"><input type="radio" name="mod" class="accent-red-500"> Clásico</label>
+                                <label class="flex items-center gap-2"><input type="radio" name="mod" class="accent-red-500"> Modelo T</label>
+                                <label class="flex items-center gap-2"><input type="radio" name="mod" class="accent-red-500"> Cordillera</label>
+                                <label class="flex items-center gap-2"><input type="radio" name="mod" class="accent-red-500"> Mediterráneo</label>
                             </div>
                         </div>
-                        <div>
-                            <label class="text-sm font-medium text-gray-700">Seleccionar Región</label>
-                             <div class="mt-2 flex gap-6 text-sm">
-                                <label class="flex items-center"><input type="radio" name="region" class="mr-2"> Paine</label>
-                                <label class="flex items-center"><input type="radio" name="region" class="mr-2"> Coquimbo</label>
+
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-gray-300">Región:</label>
+                            <div class="flex gap-4 text-sm">
+                                <label class="flex items-center gap-2"><input type="radio" name="reg" class="accent-red-500"> Paine</label>
+                                <label class="flex items-center gap-2"><input type="radio" name="reg" class="accent-red-500"> Coquimbo</label>
                             </div>
                         </div>
-                         <div>
-                            <label class="text-sm font-medium text-gray-700">Mensaje</label>
-                            <textarea rows="4" class="w-full mt-1 p-3 rounded-md bg-white border border-gray-300" placeholder="Escribe tu mensaje aquí..."></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary btn-red w-full !py-3 !text-base !rounded-full">Enviar</button>
+
+                        <textarea rows="3" placeholder="Mensaje..." class="w-full p-3 rounded bg-gray-800 border border-gray-700 focus:border-red-500 outline-none transition-colors"></textarea>
+                        
+                        <button class="w-full py-3 bg-red-600 hover:bg-red-700 rounded-full font-bold text-lg shadow-lg transition-transform active:scale-95">Enviar Cotización</button>
                     </form>
                 </section>
 
-                <!-- Ubicación -->
-                <section class="section-padding">
-                    <h3 class="font-bold text-lg mb-3">Ubicación RM</h3>
-                    <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden border-2 border-dashed border-gray-300">
-                         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13204.66179401764!2d-70.749199!3d-33.851957!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662e0887012351d%3A0x7d636384560b38cd!2sCasas%20prefabricadas%20So%C3%B1arte!5e0!3m2!1ses-419!2sar!4v1678886400000" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                    
-                    <h3 class="font-bold text-lg mt-6 mb-3">Ubicación Coquimbo</h3>
-                    <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden border-2 border-dashed border-gray-300">
-                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.937255627209!2d-71.36961202821924!3d-30.00995797427303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9691cfb948b4191d%3A0xdb37cffe5765b1ef!2sCasas%20So%C3%B1arte%20Spa!5e0!3m2!1ses!2scl!4v1763128548916!5m2!1ses!2scl" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-
-                    <div class="mt-6 space-y-4 text-gray-700">
-                        <div class="flex items-start gap-3">
-                            <i class="fas fa-map-marker-alt mt-1 text-gray-500"></i>
-                            <p>Longitudinal sur km 47, Paine, RM</p>
+                <!-- 12. Mapas -->
+                <section class="section-padding p-6">
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="font-bold text-lg mb-3 flex items-center gap-2"><i class="fas fa-map-marker-alt text-red-600"></i> Ubicación RM</h3>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13204.66179401764!2d-70.749199!3d-33.851957!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662e0887012351d%3A0x7d636384560b38cd!2sCasas%20prefabricadas%20So%C3%B1arte!5e0!3m2!1ses-419!2sar!4v1678886400000" class="w-full h-48 rounded-lg border bg-gray-200" loading="lazy"></iframe>
+                            <p class="text-sm text-gray-600 mt-2">Longitudinal sur km 47, Paine.</p>
                         </div>
-                         <div class="flex items-start gap-3">
-                            <i class="fas fa-map-marker-alt mt-1 text-gray-500"></i>
-                            <p>Sector el Panul, Camino al vertedero S/N, Coquimbo</p>
-                        </div>
-                         <div class="flex items-start gap-3">
-                            <i class="fas fa-clock mt-1 text-gray-500"></i>
-                            <div>
-                                <p>Lunes a Viernes de 9:00 a 18:00 Hrs.</p>
-                                <p>Sábados de 9:00 a 16:00 Hrs.</p>
-                            </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-3 flex items-center gap-2"><i class="fas fa-map-marker-alt text-red-600"></i> Ubicación Coquimbo</h3>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.937255627209!2d-71.36961202821924!3d-30.00995797427303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9691cfb948b4191d%3A0xdb37cffe5765b1ef!2sCasas%20So%C3%B1arte%20Spa!5e0!3m2!1ses!2scl!4v1763128548916" class="w-full h-48 rounded-lg border bg-gray-200" loading="lazy"></iframe>
+                            <p class="text-sm text-gray-600 mt-2">Sector el Panul, Coquimbo.</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- 13. Footer -->
-                <footer class="section-padding bg-gray-900 text-gray-300 text-sm">
-                    <div class="text-center md:text-left">
-                        <h4 class="font-bold text-white">Fábrica de casas prefabricadas.</h4>
-                        <p class="mt-1 text-gray-400">Seguridad, confianza y transparente para tu servicio.</p>
+                <!-- Footer -->
+                <footer class="bg-gray-900 text-gray-400 p-8 text-sm border-t border-gray-800 text-center">
+                    <div class="mb-6">
+                        <h4 class="text-white font-bold text-lg mb-1">Casas Soñarte</h4>
+                        <p>Calidad y confianza desde la fábrica a tu terreno.</p>
                     </div>
-                    <div class="mt-6 border-t border-gray-700 pt-6">
-                         <h5 class="font-semibold text-white">Teléfono:</h5>
-                         <ul class="mt-2 space-y-2 text-gray-400">
-                            <li><a href="#" class="hover:text-white">+569 3289 0426 (Whatsapp + Atención Personalizada)</a></li>
-                            <li><a href="#" class="hover:text-white">+569 3669 8846 (Atención Personalizada)</a></li>
-                            <li><a href="#" class="hover:text-white">+569 6447 9539 (Atención Personalizada)</a></li>
-                         </ul>
+                    
+                    <div class="space-y-2 mb-6">
+                        <a href="tel:+56932890426" class="block hover:text-white transition-colors"><i class="fab fa-whatsapp mr-2"></i> +569 3289 0426</a>
+                        <a href="mailto:info@casassonarte.cl" class="block hover:text-white transition-colors"><i class="far fa-envelope mr-2"></i> info@casassonarte.cl</a>
                     </div>
-                     <div class="mt-6 border-t border-gray-700 pt-6">
-                         <h5 class="font-semibold text-white">E-mail:</h5>
-                         <a href="mailto:info@casassonarte.cl" class="text-gray-400 hover:text-white">info@casassonarte.cl</a>
+
+                    <div class="flex justify-center gap-6 text-2xl text-white mb-8">
+                        <i class="fab fa-facebook cursor-pointer hover:text-blue-500"></i>
+                        <i class="fab fa-instagram cursor-pointer hover:text-pink-500"></i>
+                        <i class="fab fa-youtube cursor-pointer hover:text-red-500"></i>
                     </div>
-                    <div class="mt-6 border-t border-gray-700 pt-6">
-                        <h5 class="font-semibold text-white mb-3">RRSS</h5>
-                        <div class="flex gap-6 text-2xl">
-                            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
-                            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                    <div class="mt-6 border-t border-gray-700 pt-6 flex flex-col space-y-2 text-gray-400">
-                        <a href="#" class="hover:text-white">Preguntas Frecuentes</a>
-                        <a href="#" class="hover:text-white">Términos y Condiciones</a>
-                        <a href="#" class="hover:text-white">Políticas de privacidad</a>
-                    </div>
-                    <div class="mt-8 border-t border-gray-700 pt-6 text-center text-xs text-gray-500">
-                        <p>Sitio web construído por Ingeniería Digital 2024 / Todos los derechos reservados.</p>
+
+                    <div class="border-t border-gray-800 pt-6 text-xs text-gray-600">
+                        © 2024 Casas Soñarte. Desarrollado por Ingeniería Digital.
                     </div>
                 </footer>
-
             </main>
-
-            <!-- Botón Subir -->
-            <button onclick="document.querySelector('.mobile-screen').scrollTo({top: 0})" class="fixed bottom-5 right-5 h-12 w-12 bg-gray-800 text-white rounded-full flex items-center justify-center shadow-lg">
+            
+            <!-- Botón flotante subir -->
+            <button onclick="document.querySelector('.mobile-screen').scrollTo({top:0, behavior:'smooth'})" class="absolute bottom-4 right-4 bg-gray-800 text-white w-10 h-10 rounded-full shadow-lg z-40 flex items-center justify-center hover:bg-gray-700">
                 <i class="fas fa-arrow-up"></i>
             </button>
         </div>
     </div>
 
+    <!-- LÓGICA JAVASCRIPT (Generación dinámica de contenido) -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- Lógica para el carrusel de Proceso de Compra ---
-            const processCarousel = document.getElementById('process-carousel');
-            if (processCarousel) {
-                const slides = processCarousel.children;
-                const tabsContainer = document.getElementById('process-tabs');
-                const slideCount = slides.length;
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Datos del Proceso
+            const pasos = [
+                { icon: 'fa-calendar-check', t: 'Agenda visita', d: 'WhatsApp o RRSS' },
+                { icon: 'fa-file-signature', t: 'Contrato', d: 'Fecha entrega acordada' },
+                { icon: 'fa-money-bill-wave', t: 'Abona $100k', d: 'Efectivo o Crédito' },
+                { icon: 'fa-truck', t: 'Paga saldo', d: 'Al recibir conforme' }
+            ];
+            
+            const processCont = document.getElementById('process-carousel');
+            const processTabs = document.getElementById('process-tabs');
+            
+            pasos.forEach((p, i) => {
+                // Crear Slide
+                const slide = document.createElement('div');
+                slide.className = 'w-full flex-shrink-0 snap-center p-4 text-center';
+                slide.innerHTML = `
+                    <div class="w-16 h-16 mx-auto mb-3 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center text-gray-400 text-2xl bg-gray-50">
+                        <i class="fas ${p.icon}"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800">${p.t}</h3>
+                    <p class="text-xs text-gray-500 mt-1">${p.d}</p>
+                `;
+                processCont.appendChild(slide);
 
-                // Crear tabs
-                for (let i = 0; i < slideCount; i++) {
-                    const tab = document.createElement('div');
-                    tab.classList.add('process-tab');
-                    tab.addEventListener('click', () => {
-                        processCarousel.scrollTo({
-                            left: i * processCarousel.offsetWidth,
-                            behavior: 'smooth'
-                        });
-                    });
-                    tabsContainer.appendChild(tab);
-                }
+                // Crear Tab
+                const tab = document.createElement('div');
+                tab.className = `process-tab ${i === 0 ? 'active' : ''}`;
+                tab.onclick = () => processCont.scrollTo({ left: i * processCont.offsetWidth, behavior: 'smooth' });
+                processTabs.appendChild(tab);
+            });
 
-                const tabs = tabsContainer.children;
-                tabs[0].classList.add('active');
-
-                // Actualizar tab activo con el scroll
-                processCarousel.addEventListener('scroll', () => {
-                    const currentIndex = Math.round(processCarousel.scrollLeft / processCarousel.offsetWidth);
-                    Array.from(tabs).forEach((tab, index) => {
-                        tab.classList.toggle('active', index === currentIndex);
-                    });
-                });
-            }
-
-            // --- Lógica genérica para los carruseles con flechas ---
-            const carouselContainers = document.querySelectorAll('.carousel-container');
-            carouselContainers.forEach(container => {
-                const carousel = container.querySelector('.carousel');
-                const prevBtn = container.querySelector('.carousel-prev');
-                const nextBtn = container.querySelector('.carousel-next');
-
-                if (!carousel || !prevBtn || !nextBtn) return;
-
-                const scrollAmount = carousel.querySelector('.carousel-card')?.offsetWidth * 0.8;
-
-                nextBtn.addEventListener('click', () => {
-                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                });
-
-                prevBtn.addEventListener('click', () => {
-                    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            // Actualizar tabs al scrollear
+            processCont.addEventListener('scroll', () => {
+                const idx = Math.round(processCont.scrollLeft / processCont.offsetWidth);
+                Array.from(processTabs.children).forEach((t, i) => {
+                    if(i === idx) t.classList.add('active');
+                    else t.classList.remove('active');
                 });
             });
+
+            // 2. Generar Catálogo (Función reutilizable)
+            const createModelCarousel = (titulo, modelos) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'relative border-b border-gray-100 pb-6';
+                
+                let cardsHtml = '';
+                modelos.forEach(m => {
+                    cardsHtml += `
+                    <div class="carousel-card border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
+                        <div class="h-36 bg-gray-200 flex items-center justify-center text-gray-400 text-xs">FOTO MODELO</div>
+                        <div class="p-4">
+                            <h4 class="font-bold text-gray-800 leading-tight">${m}</h4>
+                            <div class="mt-2 space-y-1">
+                                <p class="text-sm font-semibold text-gray-600">Desde $9.5M <span class="text-xs font-normal text-gray-400 italic">en RM</span></p>
+                                <p class="text-sm font-semibold text-gray-600">Desde $10.5M <span class="text-xs font-normal text-gray-400 italic">en IV Reg</span></p>
+                            </div>
+                            <div class="mt-3 grid grid-cols-2 gap-2">
+                                <button class="text-xs border border-gray-300 rounded py-2 text-gray-600 hover:bg-gray-50">Ficha RM</button>
+                                <button class="text-xs border border-gray-300 rounded py-2 text-gray-600 hover:bg-gray-50">Ficha IV</button>
+                            </div>
+                        </div>
+                    </div>`;
+                });
+
+                wrapper.innerHTML = `
+                    <div class="flex justify-between items-center mb-3 px-1">
+                        <h3 class="font-bold text-lg text-gray-800">${titulo}</h3>
+                        <div class="text-gray-400 text-sm space-x-2 cursor-pointer">
+                            <i class="fas fa-chevron-left hover:text-gray-600"></i> <i class="fas fa-chevron-right hover:text-gray-600"></i>
+                        </div>
+                    </div>
+                    <div class="carousel hide-scrollbar">${cardsHtml}</div>
+                `;
+                return wrapper;
+            };
+
+            const catContainer = document.getElementById('catalogo-container');
+            catContainer.appendChild(createModelCarousel('Modelo Clásico', ['24mt 2A Clásico', '36mt 2A Clásico', '42mt 2A Clásico', '54mt 3A Clásico']));
+            catContainer.appendChild(createModelCarousel('Modelo T', ['63mt Modelo T', '83mt Modelo T', '120mt Modelo T']));
+            catContainer.appendChild(createModelCarousel('Cordillera', ['40mt Cordillera', '60mt Cordillera', '90mt Cordillera']));
+             catContainer.appendChild(createModelCarousel('Modelo L', ['36mt 2A L', '117mt L']));
+             catContainer.appendChild(createModelCarousel('Mediterráneo', ['36mt Mediterráneo', '83mt Mediterráneo']));
+
+            // 3. Adicionales
+            const adicionales = [
+                {t:'TEJAS ASFÁLTICAS', d:'Incluye OSB y 30% extra cerchas', i:'fa-layer-group'},
+                {t:'VIGAS A LA VISTA', d:'En living comedor + tablas cielo', i:'fa-columns'},
+                {t:'SIDING', d:'Fibrocemento color a elección', i:'fa-fill-drip'},
+                {t:'VENTANAS ALUMINIO', d:'Vidrios incluidos', i:'fa-window-maximize'}
+            ];
+            const adContainer = document.getElementById('adicionales-container');
+            adicionales.forEach(a => {
+                adContainer.innerHTML += `
+                <div class="carousel-card border rounded-xl p-4 bg-white text-center shadow-sm" style="flex-basis: 65%;">
+                    <i class="fas ${a.i} text-3xl text-gray-300 mb-3"></i>
+                    <h4 class="font-bold text-sm mb-1">${a.t}</h4>
+                    <p class="text-xs text-gray-500 leading-tight">${a.d}</p>
+                </div>`;
+            });
+
+            // 4. Testimonios
+            const testContainer = document.getElementById('testimonios-container');
+            const clientes = [
+                {n:'Juan Pérez', c:'Paine', t:'Excelente servicio y rapidez.'},
+                {n:'María González', c:'Coquimbo', t:'Feliz con mi casa en la playa.'},
+                {n:'Carlos Soto', c:'La Serena', t:'100% recomendados, muy serios.'}
+            ];
+            clientes.forEach(c => {
+                testContainer.innerHTML += `
+                <div class="carousel-card border rounded-xl p-4 bg-white shadow-sm" style="flex-basis: 80%;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-200"></div>
+                        <div>
+                            <p class="font-bold text-sm">${c.n}</p>
+                            <p class="text-xs text-gray-400">${c.c}</p>
+                        </div>
+                    </div>
+                    <p class="text-sm italic text-gray-600">"${c.t}"</p>
+                </div>`;
+            });
         });
+
+        // Función global para scroll de kits
+        function scrollKit(direction) {
+            const container = document.getElementById('kit-carousel');
+            const scrollAmount = container.offsetWidth * 0.85;
+            container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
